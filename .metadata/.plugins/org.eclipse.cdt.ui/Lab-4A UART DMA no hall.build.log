@@ -1,0 +1,10 @@
+23:00:49 **** Incremental Build of configuration Debug for project Lab-4A UART DMA no hall ****
+make -j22 all 
+arm-none-eabi-size  Lab-4A\ UART\ DMA\ no\ hall.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1784	     40	   1632	   3456	    d80	Lab-4A UART DMA no hall.elf
+Finished building: default.size.stdout
+ 
+
+23:00:49 Build Finished. 0 errors, 0 warnings. (took 244ms)
+

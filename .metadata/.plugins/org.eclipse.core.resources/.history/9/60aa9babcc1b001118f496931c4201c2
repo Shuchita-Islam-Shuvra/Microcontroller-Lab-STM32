@@ -1,0 +1,91 @@
+/* Lab 3A - External Interrupt on PC13 with UART output (No HAL)
+ * PC13 = B1 (User Button, active LOW)
+ * Toggles PA5 (LD2) and prints "Button pressed!" on USART2
+ */
+
+#define STM32F446xx
+#include "stm32f4xx.h"
+#include <string.h>
+
+/* --- UART Functions --- */
+void USART2_Init(void)
+{
+    /* 1. Enable clocks for GPIOA and USART2 */
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+    RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+    __NOP(); __NOP();
+
+    /* 2. Configure PA2 = TX, PA3 = RX for AF7 (USART2) */
+    GPIOA->MODER &= ~((3UL<<4) | (3UL<<6));   // Clear mode
+    GPIOA->MODER |=  ((2UL<<4) | (2UL<<6));   // AF mode
+    GPIOA->AFR[0] &= ~((0xF<<8) | (0xF<<12));
+    GPIOA->AFR[0] |=  ((7<<8) | (7<<12));     // AF7 = USART2
+    GPIOA->OSPEEDR |= (3UL<<4) | (3UL<<6);    // High speed
+    GPIOA->OTYPER &= ~((1UL<<2) | (1UL<<3));  // Push-pull
+    GPIOA->PUPDR &= ~((3UL<<4) | (3UL<<6));   // No pull-up/pull-down
+
+    /* 3. Configure baud rate: 16MHz / 115200 */
+    USART2->BRR = 16000000 / 115200;
+
+    /* 4. Enable USART, TX and RX */
+    USART2->CR1 = USART_CR1_TE | USART_CR1_RE;
+    USART2->CR1 |= USART_CR1_UE;
+}
+
+void USART2_SendString(const char *str)
+{
+    while(*str)
+    {
+        while(!(USART2->SR & USART_SR_TXE));  // Wait TX empty
+        USART2->DR = *str++;
+    }
+}
+
+/* --- External Interrupt Handler --- */
+void EXTI15_10_IRQHandler(void)
+{
+    if (EXTI->PR & (1UL << 13))   // Is line 13 pending?
+    {
+        EXTI->PR = (1UL << 13);   // Clear pending
+        GPIOA->ODR ^= (1UL << 5); // Toggle LED (PA5)
+        USART2_SendString("Button pressed!\r\n");
+    }
+}
+
+int main(void)
+{
+    /* --- 1. Enable clocks --- */
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOCEN;
+    RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;   // SYSCFG for EXTI
+    __NOP(); __NOP();
+
+    /* --- 2. Configure PA5 as output (LED) --- */
+    GPIOA->MODER &= ~(3UL << 10);  // Clear mode
+    GPIOA->MODER |=  (1UL << 10);  // Output mode
+
+    /* --- 3. Configure PC13 as input (Button) --- */
+    GPIOC->MODER &= ~(3UL << 26);  // Input mode
+
+    /* --- 4. Route PC13 to EXTI13 --- */
+    SYSCFG->EXTICR[3] &= ~(0xFUL << 4);
+    SYSCFG->EXTICR[3] |=  (0x2UL << 4);     // 0x2 = Port C
+
+    /* --- 5. Configure EXTI line 13 --- */
+    EXTI->IMR  |= (1UL << 13);  // Unmask interrupt
+    EXTI->RTSR &= ~(1UL << 13); // Disable rising edge
+    EXTI->FTSR |= (1UL << 13);  // Enable falling edge
+
+    /* --- 6. Enable NVIC --- */
+    NVIC_SetPriority(EXTI15_10_IRQn, 1);
+    NVIC_EnableIRQ(EXTI15_10_IRQn);
+
+    /* --- 7. Initialize UART --- */
+    USART2_Init();
+    USART2_SendString("NUCLEO-F446RE Button Interrupt Demo Started\r\n");
+
+    /* --- 8. Main loop --- */
+    while(1)
+    {
+        __WFI();  // Wait for interrupt
+    }
+}

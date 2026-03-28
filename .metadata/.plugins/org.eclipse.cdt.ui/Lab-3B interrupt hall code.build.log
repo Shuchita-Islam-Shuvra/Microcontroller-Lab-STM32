@@ -1,0 +1,10 @@
+22:42:04 **** Incremental Build of configuration Debug for project Lab-3B interrupt hall code ****
+make -j22 all 
+arm-none-eabi-size  Lab-3B\ interrupt\ hall\ code.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6456	     12	   1572	   8040	   1f68	Lab-3B interrupt hall code.elf
+Finished building: default.size.stdout
+ 
+
+22:42:04 Build Finished. 0 errors, 0 warnings. (took 356ms)
+

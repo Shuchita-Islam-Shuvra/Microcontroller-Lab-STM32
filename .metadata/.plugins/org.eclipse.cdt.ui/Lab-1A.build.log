@@ -1,0 +1,20 @@
+22:10:33 **** Build of configuration Debug for project Lab-1A ****
+make -j22 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Inc" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Include" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-1A/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc -o "Lab-1A.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\shuch\STM32CubeIDE\workspace_2.1.0\Lab-1A\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab-1A.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab-1A.elf
+ 
+arm-none-eabi-size  Lab-1A.elf 
+arm-none-eabi-objdump -h -S Lab-1A.elf  > "Lab-1A.list"
+   text	   data	    bss	    dec	    hex	filename
+    880	      0	   1568	   2448	    990	Lab-1A.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab-1A.list
+ 
+
+22:10:34 Build Finished. 0 errors, 0 warnings. (took 670ms)
+

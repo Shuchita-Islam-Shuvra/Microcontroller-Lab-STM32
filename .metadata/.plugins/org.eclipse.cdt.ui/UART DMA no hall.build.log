@@ -1,0 +1,20 @@
+19:42:40 **** Build of configuration Debug for project UART DMA no hall ****
+make -j22 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Inc" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Include" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA no hall/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc -o "UART DMA no hall.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\shuch\STM32CubeIDE\workspace_2.1.0\UART DMA no hall\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART DMA no hall.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART DMA no hall.elf
+ 
+arm-none-eabi-size  UART\ DMA\ no\ hall.elf 
+arm-none-eabi-objdump -h -S UART\ DMA\ no\ hall.elf  > "UART DMA no hall.list"
+   text	   data	    bss	    dec	    hex	filename
+   1784	     40	   1632	   3456	    d80	UART DMA no hall.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART DMA no hall.list
+ 
+
+19:42:41 Build Finished. 0 errors, 0 warnings. (took 703ms)
+

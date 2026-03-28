@@ -1,0 +1,7 @@
+C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-4A Uart receive interrupt/Drivers/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	2
+C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-4A Uart receive interrupt/Drivers/CMSIS/Include/core_cm4.h:1814:22:__NVIC_SetPriority	2
+../Src/main.c:19:6:SystemClock_Config	6
+../Src/main.c:79:6:USART2_Init	1
+../Src/main.c:112:6:USART2_IRQHandler	4
+../Src/main.c:125:6:USART2_SendString	3
+../Src/main.c:133:5:main	3

@@ -1,0 +1,12 @@
+19:39:00 **** Incremental Build of configuration Debug for project uart receive interrup hall ****
+make -j22 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/uart receive interrup hall/Drivers/CMSIS/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/uart receive interrup hall/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:20:11: fatal error: main.h: No such file or directory
+   20 |  #include "main.h"
+      |           ^~~~~~~~
+compilation terminated.
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+
+19:39:00 Build Failed. 2 errors, 0 warnings. (took 504ms)
+

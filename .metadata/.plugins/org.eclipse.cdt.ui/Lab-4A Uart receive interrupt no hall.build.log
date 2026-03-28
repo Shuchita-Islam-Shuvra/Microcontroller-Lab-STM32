@@ -1,0 +1,10 @@
+23:07:18 **** Incremental Build of configuration Debug for project Lab-4A Uart receive interrupt no hall ****
+make -j22 all 
+arm-none-eabi-size  Lab-4A\ Uart\ receive\ interrupt\ no\ hall.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4424	     80	   2032	   6536	   1988	Lab-4A Uart receive interrupt no hall.elf
+Finished building: default.size.stdout
+ 
+
+23:07:18 Build Finished. 0 errors, 0 warnings. (took 250ms)
+

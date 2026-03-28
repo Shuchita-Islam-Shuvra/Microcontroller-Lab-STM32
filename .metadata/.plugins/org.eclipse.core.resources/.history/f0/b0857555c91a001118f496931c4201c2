@@ -1,0 +1,124 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body for UART HAL Polling
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h> // strlen() ব্যবহারের জন্য
+
+/* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart2; // UART হ্যান্ডলার ডিক্লেয়ারেশন
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void); //
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* MCU Configuration--------------------------------------------------------*/
+  HAL_Init(); // HAL লাইব্রেরি ইনিশিয়ালাইজেশন
+  SystemClock_Config(); // সিস্টেম ক্লক কনফিগারেশন
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART2_UART_Init(); // USART2 কনফিগারেশন
+
+  /* USER CODE BEGIN 2 */
+  const char *welcome = "STM32 HAL UART Polling Demo\r\nEcho server:\r\n"; //
+
+  /* শুরুতে একটি ওয়েলকাম মেসেজ পাঠানো */
+  HAL_UART_Transmit(&huart2, (uint8_t *)welcome, strlen(welcome), HAL_MAX_DELAY); //
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    uint8_t rxByte; // ১টি বাইট রাখার জন্য ভ্যারিয়েবল
+
+    /* ১টি ক্যারেক্টার রিসিভ না হওয়া পর্যন্ত অপেক্ষা করবে (Polling) */
+    if (HAL_UART_Receive(&huart2, &rxByte, 1, HAL_MAX_DELAY) == HAL_OK) //
+    {
+        /* রিসিভ করা ডাটাটি আবার পিসিতে ফেরত পাঠানো (Echo) */
+        HAL_UART_Transmit(&huart2, &rxByte, 1, HAL_MAX_DELAY); //
+
+        /* যদি এন্টার (\r) চাপা হয়, তবে নতুন লাইন (\n) যোগ করা */
+        if (rxByte == '\r') //
+        {
+            uint8_t nl = '\n'; //
+            HAL_UART_Transmit(&huart2, &nl, 1, HAL_MAX_DELAY); //
+        }
+    }
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief USART2 Initialization Function
+  */
+static void MX_USART2_UART_Init(void) //
+{
+  huart2.Instance = USART2; //
+  huart2.Init.BaudRate = 115200; //
+  huart2.Init.WordLength = UART_WORDLENGTH_8B; //
+  huart2.Init.StopBits = UART_STOPBITS_1; //
+  huart2.Init.Parity = UART_PARITY_NONE; //
+  huart2.Init.Mode = UART_MODE_TX_RX; //
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE; //
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16; //
+  if (HAL_UART_Init(&huart2) != HAL_OK) //
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief System Clock Configuration
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  HAL_RCC_OscConfig(&RCC_OscInitStruct);
+
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0);
+}
+
+static void MX_GPIO_Init(void)
+{
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+}
+
+void Error_Handler(void)
+{
+  __disable_irq();
+  while (1) {}
+}

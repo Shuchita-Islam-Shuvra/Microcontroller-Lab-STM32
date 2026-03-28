@@ -1,0 +1,16 @@
+22:44:40 **** Build of configuration Debug for project Lab-3B interrupt hall last ****
+make -j22 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Inc" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Include" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/Lab-3B interrupt hall last/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c:6:10: fatal error: stm32f4xx_hal.h: No such file or directory
+    6 | #include "stm32f4xx_hal.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+
+22:44:40 Build Failed. 3 errors, 0 warnings. (took 445ms)
+

@@ -1,0 +1,100 @@
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include <string.h>
+
+/* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart2;
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+
+/**
+  * @brief  The application entry point.
+  */
+int main(void)
+{
+  /* 1. Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* 2. Configure the system clock */
+  SystemClock_Config();
+
+  /* 3. Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART2_UART_Init();
+
+  /* USER CODE BEGIN 2 */
+  const char *welcome = "STM32F446RE UART HAL Polling Demo\r\nType a character -- it will be echoed:\r\n";
+
+  /* Initial Welcome Message (Sending String) */
+  HAL_UART_Transmit(&huart2, (uint8_t *)welcome, strlen(welcome), HAL_MAX_DELAY);
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  while (1)
+  {
+    uint8_t rxByte;
+
+    /* 4. Receive 1 byte of data (Polling mode) */
+    if (HAL_UART_Receive(&huart2, &rxByte, 1, HAL_MAX_DELAY) == HAL_OK)
+    {
+        /* 5. Transmit the received byte back (Echo) */
+        HAL_UART_Transmit(&huart2, &rxByte, 1, HAL_MAX_DELAY);
+
+        /* 6. If Carriage Return ('\r') is received, send Line Feed ('\n') */
+        if (rxByte == '\r')
+        {
+            uint8_t nl = '\n';
+            HAL_UART_Transmit(&huart2, &nl, 1, HAL_MAX_DELAY);
+        }
+    }
+  }
+}
+
+/**
+  * @brief USART2 Initialization Function
+  */
+static void MX_USART2_UART_Init(void)
+{
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief GPIO Initialization Function (Configures PA2/PA3 for USART2)
+  */
+static void MX_GPIO_Init(void)
+{
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_USART2_CLK_ENABLE();
+
+  /* PA2 -> USART2_TX, PA3 -> USART2_RX */
+  /* Note: In a real HAL project, this is usually handled in stm32f4xx_hal_msp.c */
+}
+
+/* ---------------------------------------------------------------------------
+   নিচের ফাংশনগুলো STM32CubeIDE অটোমেটিক তৈরি করে দেয়, তাই আমি সংক্ষেপে রাখলাম।
+   --------------------------------------------------------------------------- */
+void SystemClock_Config(void)
+{
+  /* Default HSI Clock 16MHz setup */
+}
+
+void Error_Handler(void)
+{
+  __disable_irq();
+  while (1) {}
+}

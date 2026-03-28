@@ -1,0 +1,143 @@
+19:16:27 **** Incremental Build of configuration Debug for project UART DMA ****
+make -j22 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA/Drivers/CMSIS/Include" -I"C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+In file included from ../Src/main.c:1:
+C:/Users/shuch/STM32CubeIDE/workspace_2.1.0/UART DMA/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:174:2: error: #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+  174 | #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+      |  ^~~~~
+../Src/main.c: In function 'DMA1_Init':
+../Src/main.c:23:5: error: 'RCC' undeclared (first use in this function)
+   23 |     RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+      |     ^~~
+../Src/main.c:23:5: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:23:21: error: 'RCC_AHB1ENR_DMA1EN' undeclared (first use in this function)
+   23 |     RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+      |                     ^~~~~~~~~~~~~~~~~~
+../Src/main.c:25:5: error: implicit declaration of function '__NOP' [-Wimplicit-function-declaration]
+   25 |     __NOP();
+      |     ^~~~~
+../Src/main.c:33:5: error: 'DMA1_Stream6' undeclared (first use in this function)
+   33 |     DMA1_Stream6->CR = 0;
+      |     ^~~~~~~~~~~~
+../Src/main.c:35:31: error: 'DMA_SxCR_EN' undeclared (first use in this function)
+   35 |     while (DMA1_Stream6->CR & DMA_SxCR_EN);
+      |                               ^~~~~~~~~~~
+../Src/main.c:39:26: error: 'uint32_t' undeclared (first use in this function)
+   39 |     DMA1_Stream6->PAR = (uint32_t)&USART2->DR;
+      |                          ^~~~~~~~
+../Src/main.c:4:1: note: 'uint32_t' is defined in header '<stdint.h>'; this is probably fixable by adding '#include <stdint.h>'
+    3 | #include <string.h>
+  +++ |+#include <stdint.h>
+    4 | 
+../Src/main.c:39:36: error: 'USART2' undeclared (first use in this function)
+   39 |     DMA1_Stream6->PAR = (uint32_t)&USART2->DR;
+      |                                    ^~~~~~
+../Src/main.c:45:19: error: 'DMA_SxCR_CHSEL_Pos' undeclared (first use in this function)
+   45 |           (4UL << DMA_SxCR_CHSEL_Pos)   // Channel 4
+      |                   ^~~~~~~~~~~~~~~~~~
+../Src/main.c:47:11: error: 'DMA_SxCR_DIR_0' undeclared (first use in this function)
+   47 |         | DMA_SxCR_DIR_0                // Memory → Peripheral
+      |           ^~~~~~~~~~~~~~
+../Src/main.c:49:11: error: 'DMA_SxCR_MINC' undeclared (first use in this function)
+   49 |         | DMA_SxCR_MINC                 // Memory increment
+      |           ^~~~~~~~~~~~~
+../Src/main.c:51:11: error: 'DMA_SxCR_TCIE' undeclared (first use in this function)
+   51 |         | DMA_SxCR_TCIE;                // Transfer complete interrupt
+      |           ^~~~~~~~~~~~~
+../Src/main.c:57:5: error: 'DMA1_Stream5' undeclared (first use in this function)
+   57 |     DMA1_Stream5->CR = 0;
+      |     ^~~~~~~~~~~~
+../Src/main.c:65:36: error: expected ';' before 'rxBuf'
+   65 |     DMA1_Stream5->M0AR = (uint32_t)rxBuf;
+      |                                    ^~~~~
+      |                                    ;
+../Src/main.c:75:11: error: 'DMA_SxCR_CIRC' undeclared (first use in this function)
+   75 |         | DMA_SxCR_CIRC                 // Circular mode
+      |           ^~~~~~~~~~~~~
+../Src/main.c:85:5: error: implicit declaration of function 'NVIC_SetPriority' [-Wimplicit-function-declaration]
+   85 |     NVIC_SetPriority(DMA1_Stream6_IRQn, 1);
+      |     ^~~~~~~~~~~~~~~~
+../Src/main.c:85:22: error: 'DMA1_Stream6_IRQn' undeclared (first use in this function)
+   85 |     NVIC_SetPriority(DMA1_Stream6_IRQn, 1);
+      |                      ^~~~~~~~~~~~~~~~~
+../Src/main.c:87:5: error: implicit declaration of function 'NVIC_EnableIRQ' [-Wimplicit-function-declaration]
+   87 |     NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+      |     ^~~~~~~~~~~~~~
+../Src/main.c: In function 'DMA1_Stream6_IRQHandler':
+../Src/main.c:99:9: error: 'DMA1' undeclared (first use in this function)
+   99 |     if (DMA1->HISR & DMA_HISR_TCIF6)
+      |         ^~~~
+../Src/main.c:99:22: error: 'DMA_HISR_TCIF6' undeclared (first use in this function)
+   99 |     if (DMA1->HISR & DMA_HISR_TCIF6)
+      |                      ^~~~~~~~~~~~~~
+../Src/main.c:103:23: error: 'DMA_HIFCR_CTCIF6' undeclared (first use in this function)
+  103 |         DMA1->HIFCR = DMA_HIFCR_CTCIF6;
+      |                       ^~~~~~~~~~~~~~~~
+../Src/main.c:107:9: error: 'USART2' undeclared (first use in this function)
+  107 |         USART2->CR3 &= ~USART_CR3_DMAT;
+      |         ^~~~~~
+../Src/main.c:107:25: error: 'USART_CR3_DMAT' undeclared (first use in this function)
+  107 |         USART2->CR3 &= ~USART_CR3_DMAT;
+      |                         ^~~~~~~~~~~~~~
+../Src/main.c:109:9: error: 'DMA1_Stream6' undeclared (first use in this function)
+  109 |         DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+      |         ^~~~~~~~~~~~
+../Src/main.c:109:30: error: 'DMA_SxCR_EN' undeclared (first use in this function)
+  109 |         DMA1_Stream6->CR &= ~DMA_SxCR_EN;
+      |                              ^~~~~~~~~~~
+../Src/main.c: At top level:
+../Src/main.c:119:42: error: unknown type name 'uint16_t'
+  119 | void DMA_UART_Transmit(const char *data, uint16_t len)
+      |                                          ^~~~~~~~
+../Src/main.c:119:42: note: 'uint16_t' is defined in header '<stdint.h>'; this is probably fixable by adding '#include <stdint.h>'
+../Src/main.c: In function 'USART2_DMA_Init':
+../Src/main.c:147:5: error: 'RCC' undeclared (first use in this function)
+  147 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+      |     ^~~
+../Src/main.c:147:21: error: 'RCC_AHB1ENR_GPIOAEN' undeclared (first use in this function)
+  147 |     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+      |                     ^~~~~~~~~~~~~~~~~~~
+../Src/main.c:149:21: error: 'RCC_APB1ENR_USART2EN' undeclared (first use in this function)
+  149 |     RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+      |                     ^~~~~~~~~~~~~~~~~~~~
+../Src/main.c:161:5: error: 'GPIOA' undeclared (first use in this function)
+  161 |     GPIOA->MODER &= ~((3UL << 4) | (3UL << 6));
+      |     ^~~~~
+../Src/main.c:173:5: error: 'USART2' undeclared (first use in this function)
+  173 |     USART2->BRR = (8 << 4) | 11;
+      |     ^~~~~~
+../Src/main.c:177:20: error: 'USART_CR3_DMAR' undeclared (first use in this function)
+  177 |     USART2->CR3 |= USART_CR3_DMAR;
+      |                    ^~~~~~~~~~~~~~
+../Src/main.c:183:11: error: 'USART_CR1_UE' undeclared (first use in this function)
+  183 |           USART_CR1_UE
+      |           ^~~~~~~~~~~~
+../Src/main.c:185:11: error: 'USART_CR1_TE' undeclared (first use in this function)
+  185 |         | USART_CR1_TE
+      |           ^~~~~~~~~~~~
+../Src/main.c:187:11: error: 'USART_CR1_RE' undeclared (first use in this function)
+  187 |         | USART_CR1_RE;
+      |           ^~~~~~~~~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:203:5: error: implicit declaration of function 'DMA_UART_Transmit' [-Wimplicit-function-declaration]
+  203 |     DMA_UART_Transmit(txMsg, strlen(txMsg));
+      |     ^~~~~~~~~~~~~~~~~
+../Src/main.c:207:5: error: unknown type name 'uint16_t'
+  207 |     uint16_t prevNDTR = RX_BUF_SIZE;
+      |     ^~~~~~~~
+../Src/main.c:207:5: note: 'uint16_t' is defined in header '<stdint.h>'; this is probably fixable by adding '#include <stdint.h>'
+../Src/main.c:215:9: error: unknown type name 'uint16_t'
+  215 |         uint16_t curNDTR = DMA1_Stream5->NDTR;
+      |         ^~~~~~~~
+../Src/main.c:215:9: note: 'uint16_t' is defined in header '<stdint.h>'; this is probably fixable by adding '#include <stdint.h>'
+../Src/main.c:215:28: error: 'DMA1_Stream5' undeclared (first use in this function)
+  215 |         uint16_t curNDTR = DMA1_Stream5->NDTR;
+      |                            ^~~~~~~~~~~~
+../Src/main.c:231:9: error: implicit declaration of function '__WFI' [-Wimplicit-function-declaration]
+  231 |         __WFI();
+      |         ^~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+
+19:16:28 Build Failed. 41 errors, 0 warnings. (took 631ms)
+

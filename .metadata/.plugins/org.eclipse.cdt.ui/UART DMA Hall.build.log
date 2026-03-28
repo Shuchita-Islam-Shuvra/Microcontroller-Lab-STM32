@@ -1,0 +1,10 @@
+12:24:48 **** Incremental Build of configuration Debug for project UART DMA Hall ****
+make -j22 all 
+arm-none-eabi-size  UART\ DMA\ Hall.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12616	     16	   1840	  14472	   3888	UART DMA Hall.elf
+Finished building: default.size.stdout
+ 
+
+12:24:48 Build Finished. 0 errors, 0 warnings. (took 370ms)
+
