@@ -26,7 +26,7 @@ Make sure the following tools are installed before getting started **(version 2.
 - Cable: USB Type-A to Mini-B
 - Operating System: Windows 11
 
----
+
 
 ## 🧪 Lab Overview
 
