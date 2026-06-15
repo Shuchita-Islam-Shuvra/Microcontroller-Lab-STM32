@@ -1,0 +1,9 @@
+../Src/main.c:26:6:SystemClock_Config	6
+../Src/main.c:65:13:USART2_Init	1
+../Src/main.c:84:13:USART2_SendString	4
+../Src/main.c:96:13:TIM6_Init	1
+../Src/main.c:109:13:delay_us	2
+../Src/main.c:115:13:delay_ms	2
+../Src/main.c:136:13:TIM2_Servo_Init	1
+../Src/main.c:184:13:Servo_SetAngle	2
+../Src/main.c:204:5:main	3
