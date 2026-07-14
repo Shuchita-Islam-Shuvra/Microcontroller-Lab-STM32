@@ -39,7 +39,7 @@ Assignment 3/
 | SCK    | PA5 (D13) | SCL/SCK    |
 | MISO   | PA6 (D12) | SDO        |
 | MOSI   | PA7 (D11) | SDA/SDI    |
-| CS     | PA4 (D10) | CSB        |
+| CS     | D4        | CSB        |
 | VCC    | 3.3V      | VCC        |
 | GND    | GND       | GND        |
 
