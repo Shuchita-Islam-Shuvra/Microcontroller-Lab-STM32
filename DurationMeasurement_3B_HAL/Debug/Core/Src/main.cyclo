@@ -1,0 +1,14 @@
+../Core/Src/main.c:66:6:DWT_Init	1
+../Core/Src/main.c:73:24:DWT_GetCycles	1
+../Core/Src/main.c:78:6:Profile_Print	1
+../Core/Src/main.c:112:6:BubbleSort_PrepareWorstCase	2
+../Core/Src/main.c:118:6:BubbleSort	4
+../Core/Src/main.c:132:17:isqrt	3
+../Core/Src/main.c:146:6:IsqrtBenchmark	2
+../Core/Src/main.c:155:6:MemCopy_ByteByByte	2
+../Core/Src/main.c:169:5:main	2
+../Core/Src/main.c:253:6:SystemClock_Config	4
+../Core/Src/main.c:308:13:MX_TIM2_Init	4
+../Core/Src/main.c:353:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:386:13:MX_GPIO_Init	1
+../Core/Src/main.c:408:6:Error_Handler	1
